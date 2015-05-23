@@ -53,7 +53,6 @@ class Clockworkgeek_Futureslider_Block_Slide extends Clockworkgeek_Formelements_
         $attrs = $this->getHtmlAttributes();
         $attrs->setId($this->getHtmlId());
         $attrs->addClass('future-slide');
-        $attrs->addClass($this->getHtmlId());
         $attrs->setStyle('background-color:'.$this->getSlide()->getBackgroundColor());
         $this->setHtmlAttributes($attrs);
 

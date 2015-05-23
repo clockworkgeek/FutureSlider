@@ -22,29 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/* @var $this Clockworkgeek_Futureslider_Block_Banner */
-if (! ($children = $this->getSortedChildBlocks())) {
-    // output nothing if no slides were loaded
-    return;
-}
-$activeRules = '';
-foreach ($children as $child) {
-    $activeRules[] = "#radio-{$child->getHtmlId()}:checked~#{$child->getHtmlId()}";
-    // add controls to child too
-    $nav = $this->getLayout()->createBlock('core/template');
-    $nav->setTemplate('futureslider/slide/prevnext.phtml');
-    $child->append($nav, 'prevnext');
-}
-$activeRules = implode(',', $activeRules);
+/* @var $this Mage_Core_Block_Template */
+$parent = $this->getParentBlock();
+$prev = $parent->getPrev();
+$next = $parent->getNext();
 ?>
-<style type="text/css">
-<?php echo $activeRules ?> { z-index: 2; }
-</style>
-<div<?php echo $this->getHtmlAttributes()->addClass('prevnext') ?>>
-<?php reset($children)->setChecked('checked="checked" ') // only first is checked ?>
-<?php if (count($children) > 1) foreach ($children as $child): // inputs must occur before labels ?>
-    <input type="radio" name="<?php echo $this->getHtmlId() ?>" id="radio-<?php echo $child->getHtmlId() ?>" class="no-display" hidden="hidden" <?php echo $child->getChecked() ?>/>
-<?php endforeach; ?>
-<?php echo $this->getChildHtml(); ?>
-
-</div>
+<?php if ($prev != $parent && $next != $parent): ?>
+    <label for="radio-<?php echo $prev->getHtmlId() ?>" class="future-nav-prev <?php echo $parent->getHtmlId() ?>"></label>
+    <label for="radio-<?php echo $next->getHtmlId() ?>" class="future-nav-next <?php echo $parent->getHtmlId() ?>"></label>
+<?php endif; ?>

@@ -36,14 +36,14 @@
   border-right: 3em solid rgba(51,51,51,0.5);
   left: 0;
 }
-.widget-future-banner .future-nav-prev:hover {
+.widget-future-banner:hover .future-nav-prev {
   border-right-color: #636363;
 }
 .widget-future-banner .future-nav-next {
   border-left: 3em solid rgba(51,51,51,0.5);
   right: 0;
 }
-.widget-future-banner .future-nav-next:hover {
+.widget-future-banner:hover .future-nav-next {
   border-left-color: #636363;
 }
 .future-slide {

@@ -31,20 +31,23 @@
   display: block;
   border-top: 3em solid transparent;
   border-bottom: 3em solid transparent;
+  opacity: 0.5;
 }
 .widget-future-banner .future-nav-prev {
-  border-right: 3em solid rgba(51,51,51,0.5);
+  border-right: 3em solid #333;
   left: 0;
 }
 .widget-future-banner:hover .future-nav-prev {
   border-right-color: #636363;
+  opacity: 1;
 }
 .widget-future-banner .future-nav-next {
-  border-left: 3em solid rgba(51,51,51,0.5);
+  border-left: 3em solid #333;
   right: 0;
 }
 .widget-future-banner:hover .future-nav-next {
   border-left-color: #636363;
+  opacity: 1;
 }
 .future-slide {
   position: absolute;

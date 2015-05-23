@@ -34,14 +34,11 @@ class Clockworkgeek_Futureslider_Model_Widget_Observer
         if ($slide->getContentWidget()) {
             /* @var $block Clockworkgeek_Futureslider_Block_Slide */
             $block = $observer->getBlock();
-            /* @var $child Mage_Core_Block_Text */
-            $child = $block->getLayout()->createBlock('core/text');
-            /* @var $template Mage_Widget_Model_Template_Filter */
-            $template = Mage::getModel('widget/template_filter');
-
-            $child->setText(
-                $template->filter($slide->getContentWidget())
-            );
+            /* @var $child Clockworkgeek_Formelements_Block_Template */
+            $child = $block->getLayout()->createBlock('formelements/template');
+            $child->setTemplate('futureslider/slide/content/widget.phtml');
+            // Formelements block will take care of rendering the widget
+            $child->setSlide($slide);
             $block->append($child, 'content_widget');
         }
     }

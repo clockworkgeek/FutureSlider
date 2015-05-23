@@ -22,13 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/* @var $this Clockworkgeek_Futureslider_Block_Slide */
-?>
-<figure<?php echo $this->getHtmlAttributes() ?>>
-    <?php echo $this->getImageHtml() ?>
-<?php if ($this->getSlide()->getLinkUrl()): // should this also be a block? perhaps in a child group? ?>
-    <a href="<?php echo $this->getSlide()->getLinkUrl() ?>"><?php echo $this->escapeHtml($this->getSlide()->getLinkText()) ?></a>
-<?php endif; ?>
 
-<?php echo $this->getChildHtml() ?>
-</figure>
+/* @var $this Clockworkgeek_Formelements_Block_Template */
+?>
+<figcaption>
+<?php echo $this->getSlide()->getContentWidget() ?>
+</figcaption>

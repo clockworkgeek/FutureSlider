@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2015 Daniel Deady
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+    <futureslider_banner type="futureslider/banner" module="futureslider" translate="name description">
+        <name>Future Slider Banner</name>
+        <description>A cycling show of slides</description>
+        <parameters>
+            <slide_ids type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Slides</label>
+                <type>label</type>
+                <helper_block>
+                    <type>futureslider/adminhtml_slide_chooser</type>
+                </helper_block>
+            </slide_ids>
+            <duration translate="label description">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Display Time (seconds)</label>
+                <description>Will apply to slides which do not specify a time.</description>
+                <type>formelements/adminhtml_renderer_fieldset_element_number</type>
+                <value>10</value>
+            </duration>
+            <transition_time translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Transition Time (seconds)</label>
+                <type>formelements/adminhtml_renderer_fieldset_element_number</type>
+                <value>1</value>
+            </transition_time>
+            <aspect_ratio translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Aspect Ratio</label>
+                <type>select</type>
+                <value>cinema</value>
+                <values>
+                <!-- remember to copy new ratios to "config.xml" and "futureslider.css" -->
+                    <portrait translate="label">
+                        <value>portrait</value>
+                        <label>1:1.43 (portrait paper)</label>
+                    </portrait>
+                    <square translate="label">
+                        <value>square</value>
+                        <label>1:1 (square)</label>
+                    </square>
+                    <traditional translate="label">
+                        <value>traditional</value>
+                        <label>4:3 (traditional TV)</label>
+                    </traditional>
+                    <landscape translate="label">
+                        <value>landscape</value>
+                        <label>1.43:1 (landscape paper)</label>
+                    </landscape>
+                    <photo translate="label">
+                        <value>photo</value>
+                        <label>3:2 (35mm photograph)</label>
+                    </photo>
+                    <widescreen translate="label">
+                        <value>widescreen</value>
+                        <label>16:9 (widescreen TV)</label>
+                    </widescreen>
+                    <cinema translate="label">
+                        <value>cinema</value>
+                        <label>2.39:1 (widescreen cinema)</label>
+                    </cinema>
+                </values>
+            </aspect_ratio>
+            <template translate="label">
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>futureslider/banner/autoplay.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>futureslider/banner/autoplay.phtml</value>
+                        <label>Auto-play</label>
+                    </default>
+                    <prevnext translate="label">
+                        <value>futureslider/banner/prevnext.phtml</value>
+                        <label>Previous/Next Buttons</label>
+                    </prevnext>
+                </values>
+            </template>
+        </parameters>
+    </futureslider_banner>
+</widgets>

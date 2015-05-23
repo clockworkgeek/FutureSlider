@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2015 Daniel Deady
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+    <modules>
+        <Clockworkgeek_Futureslider>
+            <version>0.0.1</version>
+        </Clockworkgeek_Futureslider>
+    </modules>
+
+    <global>
+        <blocks>
+            <futureslider>
+                <class>Clockworkgeek_Futureslider_Block</class>
+            </futureslider>
+        </blocks>
+        <helpers>
+            <futureslider>
+                <class>Clockworkgeek_Futureslider_Helper</class>
+            </futureslider>
+        </helpers>
+        <models>
+            <futureslider>
+                <class>Clockworkgeek_Futureslider_Model</class>
+                <resourceModel>futureslider_resource</resourceModel>
+            </futureslider>
+            <futureslider_resource>
+                <class>Clockworkgeek_Futureslider_Model_Resource</class>
+                <entities>
+                    <eav>
+                        <table>futureslider_eav</table>
+                    </eav>
+                    <slide>
+                        <table>futureslider_slide</table>
+                    </slide>
+                </entities>
+            </futureslider_resource>
+        </models>
+
+        <resources>
+            <clockworkgeek_futureslider>
+                <setup>
+                    <module>Clockworkgeek_Futureslider</module>
+                    <class>Clockworkgeek_Futureslider_Model_Resource_Setup</class>
+                </setup>
+            </clockworkgeek_futureslider>
+        </resources>
+
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <futureslider before="Mage_Adminhtml">Clockworkgeek_Futureslider_Adminhtml</futureslider>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <futureslider>
+                    <files>
+                        <default>futureslider.csv</default>
+                    </files>
+                </futureslider>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <futureslider>
+                    <file>clockworkgeek/futureslider.xml</file>
+                </futureslider>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+        <events>
+            <!-- events are here for demonstration as much as practise -->
+            <futureslider_block_slide_to_html_before>
+                <observers>
+                    <futureslider_widget>
+                        <class>futureslider/widget_observer</class>
+                        <method>renderWidgetContent</method>
+                        <type>singleton</type>
+                    </futureslider_widget>
+                </observers>
+            </futureslider_block_slide_to_html_before>
+            <futureslider_slide_collection_filter_before>
+                <observers>
+                    <futureslider_default>
+                        <class>futureslider/slide_observer</class>
+                        <method>addDefaultFilters</method>
+                        <type>singleton</type>
+                    </futureslider_default>
+                    <futureslider_widget>
+                        <class>futureslider/widget_observer</class>
+                        <method>addSlideFilters</method>
+                        <type>singleton</type>
+                    </futureslider_widget>
+                </observers>
+            </futureslider_slide_collection_filter_before>
+        </events>
+    </frontend>
+
+    <default>
+        <futureslider>
+            <widget_ratios>
+                <!-- values should match futureslider.css for accurate image resizing -->
+                <cinema>0.4184</cinema>
+                <widescreen>0.5625</widescreen>
+                <photo>0.6666</photo>
+                <landscape>0.6993</landscape>
+                <traditional>0.75</traditional>
+                <square>1</square>
+                <portrait>1.43</portrait>
+            </widget_ratios>
+        </futureslider>
+        <media_storage_configuration>
+            <allowed_resources>
+                <futureslider>resized/futureslider</futureslider>
+            </allowed_resources>
+        </media_storage_configuration>
+    </default>
+</config>

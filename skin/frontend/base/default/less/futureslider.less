@@ -1,0 +1,129 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Daniel Deady
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+.widget-future-banner {
+    position: relative;
+
+    /* 2.39:1 cinema */
+    padding-top: 41.84%;
+    &.aspect-widescreen {
+        /* 16:9 */
+        padding-top: 56.25%;
+    }
+    &.aspect-photo {
+        /* 3:2 */
+        padding-top: 66.66%;
+    }
+    &.aspect-landscape {
+        /* 1.43:1 */
+        padding-top: 69.93%;
+    }
+    &.aspect-traditional {
+    /* 4:3 */
+        padding-top: 75%;
+    }
+    &.aspect-square {
+        /* 1:1 */
+        padding-top: 100%;
+    }
+    &.aspect-portrait {
+        /* 1:1.43 */
+        padding-top: 143%;
+    }
+
+    @arrow-faded: rgba(51,51,51,0.5);
+    @arrow-fore: rgb(99,99,99);
+    .future-nav-prev,
+    .future-nav-next {
+        margin: -3em 1em;
+        top: 50%;
+        cursor: pointer;
+        position: absolute;
+        width: 0;
+        height: 0;
+        display: block;
+        border-top: 3em solid transparent;
+        border-bottom: 3em solid transparent;
+    }
+    .future-nav-prev {
+        border-right: 3em solid @arrow-faded;
+        &:hover { border-right-color: @arrow-fore; }
+        left: 0;
+    }
+    .future-nav-next {
+        border-left: 3em solid @arrow-faded;
+        &:hover { border-left-color: @arrow-fore; }
+        right: 0;
+    }
+}
+
+/*** SLIDES ***/
+.future-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.first {
+        z-index: 1; // raise first slide while page loads
+    }
+
+    .future-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    > a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-indent: -1000vw;
+        overflow: hidden;
+    }
+
+    padding: 0 2em;
+    .prevnext & { padding: 0 5em; }
+    > figcaption {
+        position: relative; // non-static so previous element does not overlap
+    }
+}
+@media only screen and (min-width: 480px) {
+    .future-slide {
+        &.left {
+            justify-content: flex-start;
+        }
+        &.right {
+            justify-content: flex-end;
+        }
+    }
+}

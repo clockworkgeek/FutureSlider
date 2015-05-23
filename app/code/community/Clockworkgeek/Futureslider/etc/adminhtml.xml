@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2015 Daniel Deady
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+    <menu>
+        <cms>
+            <children>
+                <futureslider_slides module="futureslider" translate="title">
+                    <title>Future Slides</title>
+                    <action>adminhtml/futureslider/slides</action>
+                    <!-- position before Widgets -->
+                    <sort_order>14</sort_order>
+                </futureslider_slides>
+            </children>
+        </cms>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <cms>
+                        <children>
+                            <futureslider_slides module="futureslider" translate="title">
+                                <title>Future Slides</title>
+                                <sort_order>14</sort_order>
+                            </futureslider_slides>
+                        </children>
+                    </cms>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+    <!-- hardcoded grid columns are so inflexible -->
+    <!-- define here instead of config.xml so it's not loaded on every frontend page -->
+    <grid>
+        <futureslider_slides>
+            <!-- columns defined here should be filterable attributes -->
+            <columns>
+                <!-- tag name becomes input name in grid -->
+                <name module="futureslider" translate="header">
+                    <!-- index value is attribute code in collection -->
+                    <index>name</index>
+                    <!-- header is visible text -->
+                    <header>Name</header>
+                    <!-- width is normally in pixels but CSS units can be added -->
+                    <width></width>
+                </name>
+                <active_from module="futureslider" translate="header">
+                    <index>active_from</index>
+                    <header>Active From</header>
+                    <type>date</type>
+                    <width>150</width>
+                </active_from>
+                <active_to module="futureslider" translate="header">
+                    <index>active_to</index>
+                    <header>Active To</header>
+                    <type>date</type>
+                    <width>150</width>
+                </active_to>
+                <enabled module="futureslider" translate="header">
+                    <index>enabled</index>
+                    <header>Enabled</header>
+                    <type>options</type>
+                    <options>adminhtml/system_config_source_yesno::toArray</options>
+                    <width>100</width>
+                </enabled>
+                <updated_at module="futureslider" translate="header">
+                    <index>updated_at</index>
+                    <header>Last Modified</header>
+                    <type>datetime</type>
+                    <width>150</width>
+                </updated_at>
+            </columns>
+        </futureslider_slides>
+        <futureslider_slides_chooser>
+            <!-- columns defined here should be filterable attributes -->
+            <columns>
+                <name module="futureslider" translate="header">
+                    <index>name</index>
+                    <header>Name</header>
+                </name>
+                <active_from module="futureslider" translate="header">
+                    <index>active_from</index>
+                    <header>Active From</header>
+                    <type>date</type>
+                    <width>150</width>
+                </active_from>
+                <active_to module="futureslider" translate="header">
+                    <index>active_to</index>
+                    <header>Active To</header>
+                    <type>date</type>
+                    <width>150</width>
+                </active_to>
+                <enabled module="futureslider" translate="header">
+                    <index>enabled</index>
+                    <header>Enabled</header>
+                    <type>options</type>
+                    <options>adminhtml/system_config_source_yesno::toArray</options>
+                    <width>100</width>
+                </enabled>
+                <updated_at module="futureslider" translate="header">
+                    <index>updated_at</index>
+                    <header>Last Modified</header>
+                    <type>datetime</type>
+                    <width>150</width>
+                </updated_at>
+            </columns>
+        </futureslider_slides_chooser>
+    </grid>
+</config>

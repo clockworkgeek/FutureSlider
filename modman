@@ -2,6 +2,7 @@ app/code/community/Clockworkgeek/Futureslider app/code/community/Clockworkgeek/F
 app/etc/modules/Clockworkgeek_Futureslider.xml app/etc/modules/Clockworkgeek_Futureslider.xml
 app/design/adminhtml/default/default/layout/clockworkgeek/futureslider.xml app/design/adminhtml/default/default/layout/clockworkgeek/futureslider.xml
 app/design/adminhtml/default/default/template/futureslider app/design/adminhtml/default/default/template/futureslider
+app/design/frontend/base/default/layout/clockworkgeek/futureslider.xml app/design/frontend/base/default/layout/clockworkgeek/futureslider.xml
 app/design/frontend/base/default/template/futureslider app/design/frontend/base/default/template/futureslider
 app/locale/en_GB/futureslider.csv app/locale/en_GB/futureslider.csv
 skin/frontend/base/default/css/futureslider.css skin/frontend/base/default/css/futureslider.css

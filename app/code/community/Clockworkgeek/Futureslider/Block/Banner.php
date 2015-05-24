@@ -129,20 +129,6 @@ implements Mage_Widget_Block_Interface
         return 'future-banner-' . crc32($this->getNameInLayout());
     }
 
-    protected function _prepareLayout()
-    {
-        /* @var $head Mage_Page_Block_Html_Head */
-        $head = $this->getLayout()->getBlock('head');
-        if ($head) {
-            // $head only allows stylesheet to be added once
-            $head->addItem('skin_css', 'css/futureslider.css');
-            // condition chosen to match RWD conditions
-            $head->addItem('skin_css', 'css/futureslider-ie8.css', null, ' (lte IE 8) & (!IEMobile)');
-            // if banner is active but no slides are, then head is still updated
-        }
-        return parent::_prepareLayout();
-    }
-
     /**
      * @var Clockworkgeek_Futureslider_Model_Resource_Slide_Collection
      */

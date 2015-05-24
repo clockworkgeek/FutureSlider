@@ -100,6 +100,13 @@ SOFTWARE.
     </adminhtml>
 
     <frontend>
+        <layout>
+            <updates>
+                <futureslider>
+                    <file>clockworkgeek/futureslider.xml</file>
+                </futureslider>
+            </updates>
+        </layout>
         <events>
             <!-- events are here for demonstration as much as practise -->
             <futureslider_block_slide_to_html_before>

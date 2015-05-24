@@ -28,7 +28,7 @@
 // "Display" group
 // no attribute can be "content" because that's an ID on many pages
 $this->addAttribute('futureslider_slide', 'content_widget', array(
-    'type' => 'varchar',
+    'type' => 'text',
     'label' => 'Content',
     'input' => 'widget',
     'group' => 'Display',

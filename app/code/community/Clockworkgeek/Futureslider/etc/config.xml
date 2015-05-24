@@ -129,18 +129,6 @@ SOFTWARE.
     </frontend>
 
     <default>
-        <futureslider>
-            <widget_ratios>
-                <!-- values should match futureslider.css for accurate image resizing -->
-                <cinema>0.4184</cinema>
-                <widescreen>0.5625</widescreen>
-                <photo>0.6666</photo>
-                <landscape>0.6993</landscape>
-                <traditional>0.75</traditional>
-                <square>1</square>
-                <portrait>1.43</portrait>
-            </widget_ratios>
-        </futureslider>
         <media_storage_configuration>
             <allowed_resources>
                 <futureslider>resized/futureslider</futureslider>

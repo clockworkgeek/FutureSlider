@@ -38,6 +38,7 @@
  * @method string getBackgroundColor()
  * @method string getBackgroundImage()
  * @method string getBackgroundSize()
+ * @method string getContentPosition()
  * @method string getContentWidget()
  * @method Clockworkgeek_Futureslider_Model_Slide setName(string)
  * @method Clockworkgeek_Futureslider_Model_Slide setEnabled(bool)
@@ -49,6 +50,7 @@
  * @method Clockworkgeek_Futureslider_Model_Slide setBackgroundColor(string)
  * @method Clockworkgeek_Futureslider_Model_Slide setBackgroundImage(string)
  * @method Clockworkgeek_Futureslider_Model_Slide setBackgroundSize(string)
+ * @method Clockworkgeek_Futureslider_Model_Slide setContentPosition(string)
  * @method Clockworkgeek_Futureslider_Model_Slide setContentWidget(string)
  */
 class Clockworkgeek_Futureslider_Model_Slide extends Clockworkgeek_Futureslider_Model_Entity_Abstract

@@ -26,6 +26,18 @@
 class Clockworkgeek_Futureslider_Model_Slide_Observer
 {
 
+    public function addContentPositionHint(Varien_Event_Observer $observer)
+    {
+        $block = $observer->getBlock();
+        $slide = $observer->getSlide();
+
+        if ($block instanceof Clockworkgeek_Futureslider_Block_Slide &&
+            $slide instanceof Clockworkgeek_Futureslider_Model_Slide &&
+            $slide->getContentPosition()) {
+            $block->getHtmlAttributes()->addClass($slide->getContentPosition());
+        }
+    }
+
     public function addDefaultFilters(Varien_Event_Observer $observer)
     {
         /* @var $collection Clockworkgeek_Futureslider_Model_Resource_Slide_Collection */

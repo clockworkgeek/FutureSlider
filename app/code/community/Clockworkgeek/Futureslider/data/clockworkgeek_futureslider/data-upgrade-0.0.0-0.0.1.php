@@ -35,3 +35,14 @@ $this->addAttribute('futureslider_slide', 'content_widget', array(
     'global' => 0,
     'required' => false
 ));
+
+$this->addAttribute('futureslider_slide', 'content_position', array(
+    'type' => 'varchar',
+    'label' => 'Content Position',
+    'input' => 'select',
+    'group' => 'Display',
+    'source' => 'futureslider/entity_attribute_source_contentposition',
+    'default' => 'center',
+    'global' => 0,
+    'required' => false
+));

@@ -111,6 +111,11 @@ SOFTWARE.
             <!-- events are here for demonstration as much as practise -->
             <futureslider_block_slide_to_html_before>
                 <observers>
+                    <futureslider_slide>
+                        <class>futureslider/slide_observer</class>
+                        <method>addContentPositionHint</method>
+                        <type>singleton</type>
+                    </futureslider_slide>
                     <futureslider_widget>
                         <class>futureslider/widget_observer</class>
                         <method>renderWidgetContent</method>

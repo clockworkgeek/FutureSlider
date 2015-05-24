@@ -31,16 +31,40 @@ class Clockworkgeek_Futureslider_Model_Entity_Attribute_Source_Contentposition e
         $helper = Mage::helper('futureslider');
         return array(
             array(
-                'value' => 'center',
+                'value' => '',
                 'label' => $helper->__('Center')
+            ),
+            array(
+                'value' => 'top',
+                'label' => $helper->__('Top')
+            ),
+            array(
+                'value' => 'right top',
+                'label' => $helper->__('Top, Right')
+            ),
+            array(
+                'value' => 'right',
+                'label' => $helper->__('Right')
+            ),
+            array(
+                'value' => 'right bottom',
+                'label' => $helper->__('Bottom, Right')
+            ),
+            array(
+                'value' => 'bottom',
+                'label' => $helper->__('Bottom')
+            ),
+            array(
+                'value' => 'left bottom',
+                'label' => $helper->__('Bottom, Left')
             ),
             array(
                 'value' => 'left',
                 'label' => $helper->__('Left')
             ),
             array(
-                'value' => 'right',
-                'label' => $helper->__('Right')
+                'value' => 'left top',
+                'label' => $helper->__('Top, Left')
             )
         );
     }

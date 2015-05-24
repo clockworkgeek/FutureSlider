@@ -51,6 +51,19 @@ SOFTWARE.
                 <type>formelements/adminhtml_renderer_fieldset_element_number</type>
                 <value>1</value>
             </transition_time>
+            <transition_type translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Transition Type</label>
+                <type>select</type>
+                <value>formelements/adminhtml_renderer_fieldset_element_number</value>
+                <values>
+                    <fade translate="label">
+                        <value>futureslider/html_animation_fade</value>
+                        <label>Fade</label>
+                    </fade>
+                </values>
+            </transition_type>
             <aspect_ratio translate="label">
                 <visible>1</visible>
                 <required>1</required>

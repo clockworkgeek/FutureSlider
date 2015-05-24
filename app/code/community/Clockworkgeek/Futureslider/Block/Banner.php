@@ -184,8 +184,11 @@ implements Mage_Widget_Block_Interface
             return '';
         }
 
-        /* @var $animation Clockworkgeek_Futureslider_Model_Html_Animation_Abstract */
-        $animation = Mage::getModel('futureslider/html_animation_fade');
+        $animation = $this->getAnimation();
+        if (! $animation) {
+            // specified animation type is missing
+            return '';
+        }
         $animation->setDuration($this->getDuration());
         $animation->setTransitionTime($this->getTransitionTime());
         foreach ($blocks as $block) {
@@ -203,6 +206,19 @@ implements Mage_Widget_Block_Interface
     public function getTransitionTime()
     {
         return $this->hasData('transition_time') ? $this->getData('transition_time') : 1;
+    }
+
+    /**
+     * @return Clockworkgeek_Futureslider_Model_Html_Animation_Abstract
+     */
+    public function getAnimation()
+    {
+        $type = $this->hasData('transition_type') ? $this->getData('transition_type') : 'futureslider/html_animation_fade';
+        $animation = Mage::getModel($type);
+        if (! $animation) {
+            Mage::log("Animation type '$type' cannot be resolved.", Zend_Log::ERR);
+        }
+        return $animation;
     }
 
     public function getSortedChildBlocks()

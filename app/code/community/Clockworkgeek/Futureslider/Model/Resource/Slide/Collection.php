@@ -81,7 +81,14 @@ class Clockworkgeek_Futureslider_Model_Resource_Slide_Collection extends Mage_Ca
 
     public function addIdFilter(array $ids)
     {
+        $ids = array_map('intval', $ids);
         $this->addAttributeToFilter($this->getIdFieldName(), array('in' => $ids));
+        $select = $this->getSelect();
+        $select->order(sprintf(
+            'FIELD(%s, %s)',
+            $this->_getAttributeFieldName($this->getIdFieldName()),
+            $this->getConnection()->quote($ids)
+        ));
         return $this;
     }
 }

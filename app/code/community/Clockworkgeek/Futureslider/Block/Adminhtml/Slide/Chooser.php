@@ -67,7 +67,7 @@ class Clockworkgeek_Futureslider_Block_Adminhtml_Slide_Chooser extends Clockwork
             $slideIds = explode(',', $element->getValue());
             /* @var $slides Clockworkgeek_Futureslider_Model_Resource_Slide_Collection */
             $slides = Mage::getResourceModel('futureslider/slide_collection');
-            $slides->addAttributeToFilter($slides->getIdFieldName(), array('in' => $slideIds));
+            $slides->addIdFilter($slideIds);
             $slides->addAttributeToSelect('name');
             $names = $slides->getColumnValues('name');
             $chooser->setLabel(implode(', ', $names));

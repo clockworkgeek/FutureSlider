@@ -62,6 +62,10 @@ SOFTWARE.
                         <value>futureslider/html_animation_fade</value>
                         <label>Fade</label>
                     </fade>
+                    <horizontal_slide translate="label">
+                        <value>futureslider/html_animation_slide</value>
+                        <label>Horizontal Slide</label>
+                    </horizontal_slide>
                 </values>
             </transition_type>
             <aspect_ratio translate="label">

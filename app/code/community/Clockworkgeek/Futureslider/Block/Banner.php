@@ -184,74 +184,25 @@ implements Mage_Widget_Block_Interface
             return '';
         }
 
-        $keyframes = array();
-        $time = 0;
-        // what if $transition==0 ?
-        $transition = $this->getTransitionTime();
-        foreach ($blocks as $index => $block) {
-            $duration = $this->getSlideDuration($block->getSlide());
-            $properties = $this->getAnimatedProperties($block, $index);
-            $keyframes[$index] = array_filter(array(
-                $time - $transition             => $properties['show-start'],
-                $time                           => $properties['show-end'],
-                $time + $duration               => $properties['hide-start'],
-                $time + $duration + $transition => $properties['hide-end'],
-                'from'                          => $properties['hide'],
-                'to'                            => $properties['hide']
-            ));
-            $time += $duration + $transition;
-        }
-        $totalTime = $time;
-
-        $css = '';
-        foreach ($keyframes as $index => $frames) {
-            $id = $blocks[$index]->getHtmlId();
-            if (isset($frames[0])) {
-                unset($frames['from']);
-                $frames[$totalTime] = $frames[0];
-            }
-            if (isset($frames[$totalTime])) {
-                unset($frames['to']);
-            }
-            ksort($frames);
-
-            $css .= "#{$id} { animation: {$id} {$totalTime}s infinite; }\n";
-            $css .= "@keyframes {$id} {\n";
-            foreach ($frames as $time => $frame) {
-                if (is_numeric($time)) {
-                    if ($time < 0) {
-                        // wrap around to end of sequence
-                        // TODO need to move 'from' and 'to' frames
-                        $time += $totalTime;
-                    }
-                    $time = sprintf('%.2f%%', 100 * $time / $totalTime);
-                }
-                $css .= "{$time} { {$frame} }\n";
-            }
-            $css .= "}\n";
+        /* @var $animation Clockworkgeek_Futureslider_Model_Html_Animation_Abstract */
+        $animation = Mage::getModel('futureslider/html_animation_fade');
+        $animation->setDuration($this->getDuration());
+        $animation->setTransitionTime($this->getTransitionTime());
+        foreach ($blocks as $block) {
+            $animation->addSlide($block->getSlide(), $block->getHtmlId());
         }
 
-        // add prefixes
-        $css = preg_replace(array(
-            '/\b(animation[-\w]*:[^;]+;)/i',
-            '/@(keyframes \S+ {(?:[^{}]*{[^{}]*})*[^{}]*})/i'
-        ), array(
-            '-webkit-\1 -moz-\1 -ms-\1 -o-\1 \1',
-            '@-webkit-\1 @-moz-\1 @-ms-\1 @-o-\1 @\1'
-        ), $css);
+        return $animation->toCss();
+    }
 
-        return $css;
+    public function getDuration()
+    {
+        return $this->hasData('duration') ? $this->getData('duration') : 10;
     }
 
     public function getTransitionTime()
     {
         return $this->hasData('transition_time') ? $this->getData('transition_time') : 1;
-    }
-
-    public function getSlideDuration(Clockworkgeek_Futureslider_Model_Slide $slide)
-    {
-        $time = $slide->getDuration();
-        return is_null($time) ? $this->getDuration() : $time;
     }
 
     public function getSortedChildBlocks()

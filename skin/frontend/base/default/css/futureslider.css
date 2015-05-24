@@ -1,5 +1,6 @@
 .widget-future-banner {
   position: relative;
+  overflow: hidden;
   padding-top: 41.84%;
 }
 .widget-future-banner.aspect-widescreen {

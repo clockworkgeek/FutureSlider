@@ -29,11 +29,11 @@ class Clockworkgeek_Futureslider_Model_Html_Animation_Slide extends Clockworkgee
     public function getAnimatedProperties()
     {
         return array(
-            'show-start' => 'transform:translateX(100%);',
-            'show-end' => 'transform:translateX(0);',
-            'hide-start' => 'transform:translateX(0);',
-            'hide-end' => 'transform:translateX(-100%);animation-timing-function:step-end;',
-            'hidden' => 'transform:translateX(100%);',
+            'show-start' => 'left:100%;',
+            'show-end' => 'left:0;',
+            'hide-start' => 'left:0;',
+            'hide-end' => 'left:-100%;animation-timing-function:step-end;',
+            'hidden' => 'left:100%;',
         );
     }
 }

@@ -173,29 +173,35 @@ implements Mage_Widget_Block_Interface
     /**
      * Form CSS animation rules to spec.
      *
-     * @param array $blocks
      * @return string
      */
     public function getKeyframes()
     {
-        $blocks = $this->getChildGroup('slides');
-        if (count($blocks) < 2) {
-            // nothing to animate
-            return '';
-        }
-
         $animation = $this->getAnimation();
         if (! $animation) {
             // specified animation type is missing
             return '';
         }
-        $animation->setDuration($this->getDuration());
-        $animation->setTransitionTime($this->getTransitionTime());
-        foreach ($blocks as $block) {
-            $animation->addSlide($block->getSlide(), $block->getHtmlId());
-        }
 
         return $animation->toCss();
+    }
+
+    /**
+     * JS fallback for legacy browsers.
+     *
+     * Uses same animation details as CSS.
+     *
+     * @return string
+     */
+    public function getJavascript()
+    {
+        $animation = $this->getAnimation();
+        if (! $animation) {
+            // specified animation type is missing
+            return '';
+        }
+
+        return $animation->toJson();
     }
 
     public function getDuration()
@@ -209,16 +215,35 @@ implements Mage_Widget_Block_Interface
     }
 
     /**
+     * @var Clockworkgeek_Futureslider_Model_Html_Animation_Abstract
+     */
+    protected $_animation;
+
+    /**
      * @return Clockworkgeek_Futureslider_Model_Html_Animation_Abstract
      */
     public function getAnimation()
     {
-        $type = $this->hasData('transition_type') ? $this->getData('transition_type') : 'futureslider/html_animation_fade';
-        $animation = Mage::getModel($type);
-        if (! $animation) {
-            Mage::log("Animation type '$type' cannot be resolved.", Zend_Log::ERR);
+        if (! $this->_animation) {
+            $type = $this->hasData('transition_type') ? $this->getData('transition_type') : 'futureslider/html_animation_fade';
+            $animation = Mage::getModel($type);
+            if (! $animation) {
+                Mage::log("Animation type '$type' cannot be resolved.", Zend_Log::ERR);
+            }
+
+            $blocks = $this->getChildGroup('slides');
+            if (count($blocks) >= 2) {
+                $animation->setDuration($this->getDuration());
+                $animation->setTransitionTime($this->getTransitionTime());
+                foreach ($blocks as $block) {
+                    $animation->addSlide($block->getSlide(), $block->getHtmlId());
+                }
+            }
+
+            $this->_animation = $animation;
         }
-        return $animation;
+
+        return $this->_animation;
     }
 
     public function getSortedChildBlocks()

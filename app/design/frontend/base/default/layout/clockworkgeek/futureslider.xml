@@ -28,6 +28,8 @@ SOFTWARE.
             <action method="addItem"><type>skin_css</type><name>css/futureslider.css</name></action>
             <!-- IF condition chosen to match RWD theme conditions -->
             <action method="addItem"><type>skin_css</type><name>css/futureslider-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
+
+            <action method="addItem"><type>skin_js</type><name>js/futureslider.js</name></action>
         </reference>
     </default>
 </layout>

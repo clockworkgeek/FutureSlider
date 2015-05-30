@@ -30,10 +30,10 @@ class Clockworkgeek_Futureslider_Model_Html_Animation_Fadeslide extends Clockwor
     {
         return array(
             'show-start' => 'opacity:0;z-index:1;left:10%;',
-            'show-end' => 'opacity:1;z-index:1;left:0;',
-            'hide-start' => 'opacity:1;z-index:0;left:0;animation-timing-function:step-end;',
-            'hide-end' => 'opacity:0;z-index:-1;',
-            'hidden' => 'opacity:0;z-index:-1;',
+            'show-end' => 'opacity:1;z-index:1;left:0%;',
+            'hide-start' => 'opacity:1;z-index:0;left:0%;animation-timing-function:step-end;',
+            'hide-end' => 'opacity:0;z-index:-1;left:0%;',
+            'hidden' => 'opacity:0;z-index:-1;left:0%;',
         );
     }
 }

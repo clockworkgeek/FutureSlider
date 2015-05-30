@@ -94,7 +94,8 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
             $keyid = $this->_dasherize($id);
             $css .= "#$id { animation: {$keyid} {$totalTime}s infinite; }\n";
             $css .= "@keyframes $keyid {\n";
-            foreach ($frames as $index => $frame) {
+            foreach ($frames as $time => $frame) {
+                $index = sprintf('%.5g%%', 100 * $time / $totalTime);
                 $css .= "$index { $frame }\n";
             }
             $css .= "}\n";
@@ -123,7 +124,7 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
         /* @var $slide Clockworkgeek_Futureslider_Model_Slide */
         foreach ($this->getSlides() as $id => $slide) {
             $duration = $slide->getDuration() ? $slide->getDuration() : $defaultDuration;
-            $keyframes = array_merge(
+            $keyframes = array_replace(
                 $keyframes,
                 $this->_getKeyframes($id, $properties, $time, $duration, $transition, $totalTime)
             );
@@ -135,33 +136,31 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
 
     protected function _getKeyframes($id, $properties, $offsetTime, $duration, $transition, $totalTime)
     {
-        // convenience function to force all times to range of 0%~99.999%
-        $pct = function ($time) use ($offsetTime, $totalTime) {
+        // convenience function to normalise times to fixed range
+        $clip = function ($time) use ($offsetTime, $totalTime) {
             $time += $offsetTime;
             // modulo operation for floats
             while ($time < 0) $time += $totalTime;
             while ($time >= $totalTime) $time -= $totalTime;
-            $time /= $totalTime / 100;
-            // round to short form 5 significant figures
-            return sprintf('%.5g%%', $time);
+            return $time;
         };
 
         $rules = array(
-            $pct(-$transition)            => @$properties['show-start'],
-            $pct(0)                       => @$properties['show-end'],
-            $pct($duration)               => @$properties['hide-start'],
-            $pct($duration + $transition) => @$properties['hide-end']
+            $clip(-$transition)            => @$properties['show-start'],
+            $clip(0)                       => @$properties['show-end'],
+            $clip($duration)               => @$properties['hide-start'],
+            $clip($duration + $transition) => @$properties['hide-end']
         );
         // animation is looped so first/last state is also last/first state
-        if (isset($rules['0%'])) {
-            $rules['100%'] = $rules['0%'];
+        if (isset($rules[0])) {
+            $rules[$totalTime] = $rules[0];
         }
         // allow rules to overwrite defaults of 'hidden' state
-        $keyframes[$id] = array_merge(
+        $keyframes[$id] = array_replace(
             array_filter(
                 array(
-                    '0%' => @$properties['hidden'],
-                    '100%' => @$properties['hidden']
+                    0 => @$properties['hidden'],
+                    $totalTime => @$properties['hidden']
                 )
             ),
             array_filter($rules)
@@ -171,7 +170,7 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
 
         // search for and merge nested properties
         foreach (array_filter($properties, 'is_array') as $selector => $childprops) {
-            $keyframes = array_merge_recursive(
+            $keyframes = array_replace_recursive(
                 $keyframes,
                 $this->_getKeyframes(
                     $id.' '.$selector,
@@ -189,12 +188,51 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
 
     /**
      * Replace non-word characters (even dashes) to dashes.
-     * 
+     *
      * @param string $string
      * @return string
      */
     protected function _dasherize($string)
     {
         return preg_replace('/\W+/', '-', $string);
+    }
+
+    /**
+     * Encode pertinent data for fallback use
+     *
+     * @param string $queue
+     * @return string
+     */
+    public function toJson()
+    {
+        $keyframes = $this->toKeyframes();
+        $effects = array();
+        /* @var $helper Mage_Core_Helper_Data */
+        $helper = Mage::helper('core');
+
+        foreach ($keyframes as $id => $frames) {
+            foreach ($frames as $time => $frame) {
+                $effects[$time][$id] = $this->_parseStyles($frame);
+            }
+        }
+
+        return $helper->jsonEncode($effects);
+    }
+
+    protected function _parseStyles($css)
+    {
+        $styles = array();
+        foreach (explode(';', $css) as $rule) {
+            if (strpos($rule, ':') === false) {
+                continue;
+            }
+
+            list($property, $value) = explode(':', $rule, 2);
+            $property = preg_replace_callback('/-(\w)/', function($char) {
+                return strtoupper($char[1]);
+            }, trim($property));
+            $styles[$property] = trim($value);
+        }
+        return $styles;
     }
 }

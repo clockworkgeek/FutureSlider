@@ -31,6 +31,9 @@ if (! $this->getChild()) {
 <style type="text/css">
 <?php echo $this->getKeyframes(); ?>
 </style>
+<script type="text/javascript">
+self.Futureslider && Futureslider.playKeyframes(<?php echo $this->getJavascript(); ?>);
+</script>
 <section<?php echo $this->getHtmlAttributes()->addClass('autoplay') ?>>
 <?php echo $this->getChildHtml(); ?>
 </section>

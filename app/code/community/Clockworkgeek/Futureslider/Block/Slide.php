@@ -72,6 +72,11 @@ class Clockworkgeek_Futureslider_Block_Slide extends Clockworkgeek_Formelements_
 
     public function getImageHtml()
     {
+        // do not output empty img tags, it looks bad
+        if (! $this->getSlide()->getBackgroundImage()) {
+            return '';
+        }
+
         $image = Mage::getModel('futureslider/html_responsiveimage');
         $image->setBackgroundSize($this->getSlide()->getBackgroundSize());
         $image->setFilename($this->getSlide()->getBackgroundImage());

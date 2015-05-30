@@ -199,9 +199,10 @@ class Clockworkgeek_Futureslider_Model_Html_Responsiveimage extends Varien_Objec
             $attributes = new Clockworkgeek_Futureslider_Model_Html_Attributes($attributes);
         }
 
-        $dataSizes = '';
+        $attributes->setData('data-size', $this->getBackgroundSize());
+        $dataSizes = sprintf('%s;%d;%d', $this->getSourceUrl(), $this->getWidth(), $this->getHeight());
         foreach ($this->_sizes as $filename => $size) {
-            $dataSizes .= sprintf('%s;%d;%d;', Mage::getBaseUrl('media', true).$filename, $size[0], $size[1]);
+            $dataSizes .= sprintf(';%s;%d;%d', Mage::getBaseUrl('media', true).$filename, $size[0], $size[1]);
         }
         $attributes->setData('data-sizes', $dataSizes);
 

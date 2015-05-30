@@ -54,16 +54,23 @@ Effect.Transitions['step-end'] = Effect.Transitions.none;
 self.SVGSVGElement || document.observe('dom:loaded', function(){
 	// hope the size doesn't change too much after load
 	$$('.future-image').each(function(object){
-		var dims = Element.getDimensions(object),
-			src;
+		var actual = Element.getDimensions(object),
+			src, aspect, style='', targetSize=Element.readAttribute(object, 'data-size');
+		actual.aspect = actual.height / actual.width;
 		Element.readAttribute(object, 'data-sizes').split(';').eachSlice(3, function(size){
 			var url = size[0],
 				width = size[1],
 				height = size[2];
-			if ((width >= dims.width && height >= dims.height) || (!src)) {
+			if ((width >= actual.width && height >= actual.height) || (!src)) {
 				src = url;
+				aspect = height / width;
 			}
 		});
-		Element.insert(object, '<img class="raster-fallback" src="'+src+'"/>');
+		if (targetSize == 'cover') targetSize = aspect < actual.aspect ? 'auto 100%' : '100% auto';
+		else if (targetSize == 'contain') targetSize = aspect < actual.aspect ? '100% auto' : 'auto 100%';
+		if (targetSize == '100% auto') style = 'width: 100%; height: auto; margin: '+((actual.height-actual.width*aspect)/2)+'px 0;';
+		else if (targetSize == 'auto 100%') style = 'width: auto; height: 100%; margin: 0 '+((actual.width-actual.height/aspect)/2)+'px;';
+		else style = 'width: auto; height: auto;';
+		Element.update(object, '<img class="raster-fallback" src="'+src+'" style="'+style+'" />');
 	});
 });

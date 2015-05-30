@@ -61,7 +61,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2em;
 }
 .future-slide.first {
   z-index: 1;
@@ -86,6 +85,7 @@
   padding: 0 5em;
 }
 .future-slide figcaption {
+  padding: 0 2em;
   position: relative;
 }
 @media only screen and (min-width: 480px) {

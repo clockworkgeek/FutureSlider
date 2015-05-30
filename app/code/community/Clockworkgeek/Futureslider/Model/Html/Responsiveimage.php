@@ -198,10 +198,17 @@ class Clockworkgeek_Futureslider_Model_Html_Responsiveimage extends Varien_Objec
         if (is_array($attributes)) {
             $attributes = new Clockworkgeek_Futureslider_Model_Html_Attributes($attributes);
         }
+
+        $dataSizes = '';
+        foreach ($this->_sizes as $filename => $size) {
+            $dataSizes .= sprintf('%s;%d;%d;', Mage::getBaseUrl('media', true).$filename, $size[0], $size[1]);
+        }
+        $attributes->setData('data-sizes', $dataSizes);
+
         return sprintf(
             '<object data="data:image/svg+xml;base64,%s"%s>'.
             // non-vector fallback for IE8, which also cannot use background-size
-            '<!--[if lte IE 8]><img src="%s" class="raster-fallback" /><![endif]-->'.
+            '<!--[if lte IE 8]><noscript><img src="%s" class="raster-fallback" /></noscript><![endif]-->'.
             '</object>',
             base64_encode($this->toSvg()),
             $attributes,

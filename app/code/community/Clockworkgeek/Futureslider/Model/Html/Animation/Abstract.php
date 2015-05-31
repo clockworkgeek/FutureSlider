@@ -138,7 +138,7 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
 
     protected function _getKeyframes($id, $properties, $offsetTime, $duration, $transition, $totalTime)
     {
-        // convenience function to normalise times to fixed range
+        // convenience function to normalise times to 0<=$time<$totalTime
         $clip = function ($time) use ($offsetTime, $totalTime) {
             $time += $offsetTime;
             // modulo operation for floats
@@ -148,6 +148,7 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
         };
 
         $rules = array(
+            $clip(-$duration - $transition)=> @$properties['hidden'],
             $clip(-$transition)            => @$properties['show-start'],
             $clip(0)                       => @$properties['show-end'],
             $clip($duration)               => @$properties['hide-start'],
@@ -157,18 +158,10 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
         if (isset($rules[0])) {
             $rules[$totalTime] = $rules[0];
         }
-        // allow rules to overwrite defaults of 'hidden' state
-        $keyframes[$id] = array_replace(
-            array_filter(
-                array(
-                    0 => @$properties['hidden'],
-                    $totalTime => @$properties['hidden']
-                )
-            ),
-            array_filter($rules)
-        );
         // natural key sort
-        uksort($keyframes[$id], "strnatcmp");
+        uksort($rules, "strnatcmp");
+        // avoid empty CSS
+        $keyframes[$id] = array_filter($rules);
 
         // search for and merge nested properties
         foreach (array_filter($properties, 'is_array') as $selector => $childprops) {

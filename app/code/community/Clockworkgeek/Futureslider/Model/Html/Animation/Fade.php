@@ -29,11 +29,11 @@ class Clockworkgeek_Futureslider_Model_Html_Animation_Fade extends Clockworkgeek
     public function getAnimatedProperties()
     {
         return array(
-            'show-start' => 'opacity:0;z-index:1;',
-            'show-end' => 'opacity:1;z-index:1;',
-            'hide-start' => 'opacity:1;z-index:0;animation-timing-function:step-end;',
-            'hide-end' => 'opacity:0;z-index:-1;',
-            'hidden' => 'opacity:0;z-index:-1;',
+            'show-start' => 'opacity:1;z-index:1;',
+            'show-end' => 'opacity:1;z-index:2;',
+            'hide-start' => 'opacity:1;z-index:2;',
+            'hide-end' => 'opacity:0;z-index:2;',
+            'hidden' => 'opacity:0;z-index:0;',
 /* Example nested elements:
             'child element' => array(
                 ... five more rules here

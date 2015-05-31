@@ -21,6 +21,29 @@
 .future-slide figcaption {
   display: inline-block;
   vertical-align: middle;
+  width: 99%;
+}
+.future-slide figcaption > * {
+  display: inline-block;
+  text-align: left;
+}
+.future-slide.left figcaption {
+  text-align: left;
+}
+.future-slide.right figcaption {
+  text-align: right;
+}
+.future-slide.top figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.future-slide.bottom figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .future-slide .raster-fallback {
   height: 100%;

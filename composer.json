@@ -1,0 +1,19 @@
+{
+    "name": "clockworkgeek/futureslider",
+    "description": "A modern, extensible slideshow for serious Magento stores",
+    "type": "magento-module",
+    "homepage":"https://github.com/clockworkgeek/FutureSlider",
+    "require": {
+        "clockworkgeek/formelements": "~0.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Deady",
+            "email": "daniel@clockworkgeek.com"
+        }
+    ],
+    "suggest":{
+        "magento-hackathon/magento-composer-installer":"*"
+    }
+}

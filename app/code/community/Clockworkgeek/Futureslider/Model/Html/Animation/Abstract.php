@@ -102,13 +102,15 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
         }
 
         // add prefixes
-        $css = preg_replace(array(
-            '/\b(animation[-\w]*:[^;]+;)/i',
-            '/@(keyframes \S+ {(?:[^{}]*{[^{}]*})*[^{}]*})/i'
-        ), array(
-            '-webkit-\1 -moz-\1 -ms-\1 -o-\1 \1',
-            '@-webkit-\1 @-moz-\1 @-ms-\1 @-o-\1 @\1'
-        ), $css);
+        if (Mage::getStoreConfigFlag('cms/futureslider/prefixes')) {
+            $css = preg_replace(array(
+                '/\b(animation[-\w]*:[^;]+;)/i',
+                '/@(keyframes \S+ {(?:[^{}]*{[^{}]*})*[^{}]*})/i'
+            ), array(
+                '-webkit-\1 \1',
+                '@-webkit-\1 @\1'
+            ), $css);
+        }
 
         return $css;
     }

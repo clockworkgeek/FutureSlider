@@ -146,5 +146,10 @@ SOFTWARE.
                 <futureslider>resized/futureslider</futureslider>
             </allowed_resources>
         </media_storage_configuration>
+        <cms>
+            <futureslider>
+                <prefixes>1</prefixes>
+            </futureslider>
+        </cms>
     </default>
 </config>

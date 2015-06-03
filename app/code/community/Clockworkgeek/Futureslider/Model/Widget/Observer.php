@@ -47,15 +47,20 @@ class Clockworkgeek_Futureslider_Model_Widget_Observer
     {
         /* @var $collection Clockworkgeek_Futureslider_Model_Resource_Slide_Collection */
         $collection = $observer->getCollection();
+        $filters = $collection->getWidgetFilters();
 
         // widgets have right to all slide data
         $collection->addAttributeToSelect('*');
 
         // if slide_ids exists but is empty, nothing will show
-        $filters = $collection->getWidgetFilters();
         if (isset($filters['slide_ids'])) {
             $ids = explode(',', $filters['slide_ids']);
             $collection->addIdFilter($ids);
+        }
+
+        // match name by wildcard
+        if (isset($filters['names']) && strlen($filters['names'])) {
+            $collection->addNameFilter($filters['names']);
         }
     }
 }

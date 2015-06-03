@@ -128,4 +128,107 @@ SOFTWARE.
             </template>
         </parameters>
     </futureslider_banner>
+
+    <futureslider_banner_auto type="futureslider/banner_auto" module="futureslider" translate="name description">
+        <name>Future Slider Auto-Banner</name>
+        <description>A cycling show of slides</description>
+        <parameters>
+            <names translate="label description">
+                <visible>1</visible>
+                <label>Slides' Names</label>
+                <description>Only show slides with a matching name. Use asterisks for wildcards. Leave empty to show all active slides.</description>
+                <type>text</type>
+            </names>
+            <duration translate="label description">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Display Time (seconds)</label>
+                <description>Will apply to slides which do not specify a time.</description>
+                <type>formelements/adminhtml_renderer_fieldset_element_number</type>
+                <value>10</value>
+            </duration>
+            <transition_time translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Transition Time (seconds)</label>
+                <type>formelements/adminhtml_renderer_fieldset_element_number</type>
+                <value>1</value>
+            </transition_time>
+            <transition_type translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Transition Type</label>
+                <type>select</type>
+                <value>formelements/adminhtml_renderer_fieldset_element_number</value>
+                <values>
+                    <fade translate="label">
+                        <value>futureslider/html_animation_fade</value>
+                        <label>Fade</label>
+                    </fade>
+                    <horizontal_slide translate="label">
+                        <value>futureslider/html_animation_slide</value>
+                        <label>Horizontal Slide</label>
+                    </horizontal_slide>
+                    <fade_slide translate="label">
+                        <value>futureslider/html_animation_fadeslide</value>
+                        <label>Fade + Slide</label>
+                    </fade_slide>
+                </values>
+            </transition_type>
+            <aspect_ratio translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Aspect Ratio</label>
+                <type>select</type>
+                <value>cinema</value>
+                <values>
+                <!-- remember to copy new ratios to "config.xml" and "futureslider.css" -->
+                    <portrait translate="label">
+                        <value>portrait</value>
+                        <label>1:1.43 (portrait paper)</label>
+                    </portrait>
+                    <square translate="label">
+                        <value>square</value>
+                        <label>1:1 (square)</label>
+                    </square>
+                    <traditional translate="label">
+                        <value>traditional</value>
+                        <label>4:3 (traditional TV)</label>
+                    </traditional>
+                    <landscape translate="label">
+                        <value>landscape</value>
+                        <label>1.43:1 (landscape paper)</label>
+                    </landscape>
+                    <photo translate="label">
+                        <value>photo</value>
+                        <label>3:2 (35mm photograph)</label>
+                    </photo>
+                    <widescreen translate="label">
+                        <value>widescreen</value>
+                        <label>16:9 (widescreen TV)</label>
+                    </widescreen>
+                    <cinema translate="label">
+                        <value>cinema</value>
+                        <label>2.39:1 (widescreen cinema)</label>
+                    </cinema>
+                </values>
+            </aspect_ratio>
+            <template translate="label">
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>futureslider/banner/autoplay.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>futureslider/banner/autoplay.phtml</value>
+                        <label>Auto-play</label>
+                    </default>
+                    <prevnext translate="label">
+                        <value>futureslider/banner/prevnext.phtml</value>
+                        <label>Previous/Next Buttons</label>
+                    </prevnext>
+                </values>
+            </template>
+        </parameters>
+    </futureslider_banner_auto>
 </widgets>

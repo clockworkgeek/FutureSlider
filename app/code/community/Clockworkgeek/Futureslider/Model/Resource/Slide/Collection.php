@@ -91,4 +91,19 @@ class Clockworkgeek_Futureslider_Model_Resource_Slide_Collection extends Mage_Ca
         ));
         return $this;
     }
+
+    /**
+     * Supports asterisk as wildcard.
+     *
+     * An asterisk is not SQL standard but it is convenient for users.
+     * Fulltext search is not possible with InnoDB tables.
+     *
+     * @param string $name
+     */
+    public function addNameFilter($name)
+    {
+        $name = '%' . str_replace('*', '%', $name) . '%';
+        // DB adapter should handle quoting without breaking wildcards
+        $this->addAttributeToFilter('name', array('like' => $name));
+    }
 }

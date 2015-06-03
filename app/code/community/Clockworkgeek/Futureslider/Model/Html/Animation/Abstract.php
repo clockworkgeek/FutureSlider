@@ -148,7 +148,10 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
         };
 
         $rules = array(
-            $clip(-$duration - $transition)=> @$properties['hidden'],
+            max(-$duration - $transition, 0) => @$properties['hidden'],
+            min($duration + $transition + $duration, $totalTime) => @$properties['hidden'],
+            // define visible states after hidden states so they may override if
+            // time indexes are the same, this can happen for short animations
             $clip(-$transition)            => @$properties['show-start'],
             $clip(0)                       => @$properties['show-end'],
             $clip($duration)               => @$properties['hide-start'],

@@ -201,7 +201,7 @@ implements Mage_Widget_Block_Interface
             return '';
         }
 
-        return $animation->toJson();
+        return $animation->toJsonSequence();
     }
 
     public function getDuration()

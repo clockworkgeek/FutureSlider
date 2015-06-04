@@ -201,7 +201,7 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
      * @param string $queue
      * @return string
      */
-    public function toJson()
+    public function toJsonSequence()
     {
         $keyframes = $this->toKeyframes();
         $effects = array();

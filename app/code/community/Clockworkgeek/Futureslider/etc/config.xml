@@ -141,14 +141,12 @@ SOFTWARE.
     </frontend>
 
     <default>
-        <media_storage_configuration>
-            <allowed_resources>
-                <futureslider>resized/futureslider</futureslider>
-            </allowed_resources>
-        </media_storage_configuration>
         <cms>
             <futureslider>
                 <prefixes>1</prefixes>
+
+                <!-- relative to media dir, which is configurable in app/etc/config.xml -->
+                <resized_dir>resized/futureslider</resized_dir>
             </futureslider>
         </cms>
     </default>

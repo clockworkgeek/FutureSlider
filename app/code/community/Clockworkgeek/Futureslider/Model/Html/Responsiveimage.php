@@ -83,7 +83,7 @@ class Clockworkgeek_Futureslider_Model_Html_Responsiveimage extends Varien_Objec
 
     public function getResizedDir()
     {
-        return Mage::getStoreConfig('media_storage_configuration/allowed_resources/futureslider');
+        return Mage::getStoreConfig('cms/futureslider/resized_dir');
     }
 
     /**

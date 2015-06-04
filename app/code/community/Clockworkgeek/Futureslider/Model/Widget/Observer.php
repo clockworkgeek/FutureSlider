@@ -62,5 +62,13 @@ class Clockworkgeek_Futureslider_Model_Widget_Observer
         if (isset($filters['names']) && strlen($filters['names'])) {
             $collection->addNameFilter($filters['names']);
         }
+
+        // ordering might be applied to any banner
+        // caution, slide_ids also applies itself as an order
+        // must be formed like "ATTRIBUTE DIRECTION"
+        if (isset($filters['sort_by']) && (substr_count($filters['sort_by'], ' ') === 1)) {
+            list($attribute, $dir) = explode(' ', $filters['sort_by']);
+            $collection->addAttributeToSort($attribute, $dir);
+        }
     }
 }

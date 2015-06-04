@@ -56,7 +56,7 @@ SOFTWARE.
                 <required>1</required>
                 <label>Transition Type</label>
                 <type>select</type>
-                <value>formelements/adminhtml_renderer_fieldset_element_number</value>
+                <value>futureslider/html_animation_fade</value>
                 <values>
                     <fade translate="label">
                         <value>futureslider/html_animation_fade</value>
@@ -139,6 +139,47 @@ SOFTWARE.
                 <description>Only show slides with a matching name. Use asterisks for wildcards. Leave empty to show all active slides.</description>
                 <type>text</type>
             </names>
+            <sort_by>
+                <visible>1</visible>
+                <required>1</required>
+                <label>Sort By</label>
+                <type>select</type>
+                <value>created_at ASC</value>
+                <values>
+                    <created_at_asc translate="label">
+                        <value>created_at ASC</value>
+                        <label>Oldest First</label>
+                    </created_at_asc>
+                    <created_at_desc translate="label">
+                        <value>created_at DESC</value>
+                        <label>Oldest Last</label>
+                    </created_at_desc>
+                    <updated_at_desc translate="label">
+                        <value>updated_at DESC</value>
+                        <label>Recently Modified First</label>
+                    </updated_at_desc>
+                    <updated_at_asc translate="label">
+                        <value>updated_at ASC</value>
+                        <label>Recently Modified Last</label>
+                    </updated_at_asc>
+                    <active_from_desc translate="label">
+                        <value>active_from DESC</value>
+                        <label>Recently Active First</label>
+                    </active_from_desc>
+                    <active_from_asc translate="label">
+                        <value>active_from ASC</value>
+                        <label>Recently Active Last</label>
+                    </active_from_asc>
+                    <active_to_asc translate="label">
+                        <value>active_to ASC</value>
+                        <label>Expiring First</label>
+                    </active_to_asc>
+                    <active_to_desc translate="label">
+                        <value>active_to DESC</value>
+                        <label>Expiring Last</label>
+                    </active_to_desc>
+                </values>
+            </sort_by>
             <duration translate="label description">
                 <visible>1</visible>
                 <required>1</required>
@@ -159,7 +200,7 @@ SOFTWARE.
                 <required>1</required>
                 <label>Transition Type</label>
                 <type>select</type>
-                <value>formelements/adminhtml_renderer_fieldset_element_number</value>
+                <value>futureslider/html_animation_fade</value>
                 <values>
                     <fade translate="label">
                         <value>futureslider/html_animation_fade</value>

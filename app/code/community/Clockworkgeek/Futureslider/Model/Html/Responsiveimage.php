@@ -104,7 +104,8 @@ class Clockworkgeek_Futureslider_Model_Html_Responsiveimage extends Varien_Objec
         $height = $source->getOriginalHeight();
         $this->setWidth($width)->setHeight($height);
         $dir = $this->getResizedDir() . DS . md5_file($filename) . DS;
-        $dest = $dir . '%dx%d' . image_type_to_extension($source->getMimeType());
+        $size = ($this->getBackgroundSize() == 'auto') ? 'crop' : 'size';
+        $dest = $dir . $size . '-%dx%d' . image_type_to_extension($source->getMimeType());
         $mediaDir = Mage::getBaseDir('media') . DS;
 
         while ($width > self::MIN_WIDTH && $height > self::MIN_HEIGHT) {
@@ -115,7 +116,14 @@ class Clockworkgeek_Futureslider_Model_Html_Responsiveimage extends Varien_Objec
 
             if (! file_exists($mediaDir . $filename)) {
                 $image = clone $source;
-                $image->resize($width); // height is extrapolated
+                if ($size == 'size') {
+                    $image->resize($width); // height is extrapolated
+                }
+                else {
+                    $offsetX = ($this->getWidth() - $width) / 2;
+                    $offsetY = ($this->getHeight() - $height) / 2;
+                    $image->crop($offsetY, $offsetX, $offsetX, $offsetY);
+                }
                 $image->save($mediaDir . $filename);
             }
         }
@@ -144,7 +152,6 @@ class Clockworkgeek_Futureslider_Model_Html_Responsiveimage extends Varien_Objec
         switch ($this->getBackgroundSize()) {
             case null:
             case '':
-            case 'auto':
             case 'auto auto':
                 // nothing to scale
                 return $css;
@@ -157,6 +164,7 @@ class Clockworkgeek_Futureslider_Model_Html_Responsiveimage extends Varien_Objec
             case 'contain':
                 $query = '(max-width:%1$.2fin),(max-height:%2$.2fin),(max-width:%3$.2fin) and (min-resolution:192dpi),(max-height:%4$.2fin) and (min-resolution:192dpi)';
                 break;
+            case 'auto': // responsive 'auto' effectively covers element too
             case 'cover':
             default:
                 $query = '(max-width:%1$.2fin) and (max-height:%2$.2fin),(max-width:%3$.2fin) and (max-height:%4$.2fin) and (min-resolution:192dpi)';

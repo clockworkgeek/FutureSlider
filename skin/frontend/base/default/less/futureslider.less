@@ -62,9 +62,6 @@
         top: 50%;
         cursor: pointer;
         position: absolute;
-        width: 0;
-        height: 0;
-        display: block;
         border-top: 3em solid transparent;
         border-bottom: 3em solid transparent;
         opacity: 0.5;
@@ -88,7 +85,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,15 +104,13 @@
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
+        width: 100%;
+        height: 100%;
         text-indent: -1000vw;
         overflow: hidden;
     }
 
-    .prevnext & { padding: 0 5em; }
     figcaption {
-        padding: 0 2em;
         position: relative; // non-static so previous element does not overlap
     }
 }

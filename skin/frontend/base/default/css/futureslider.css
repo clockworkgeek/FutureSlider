@@ -66,6 +66,24 @@
   vertical-align: middle;
   margin-right: -0.25em;
 }
+.future-slide.left figcaption {
+  text-align: left;
+}
+.future-slide.right figcaption {
+  text-align: right;
+}
+.future-slide.top figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.future-slide.bottom figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .future-slide .future-image {
   position: absolute;
   top: 0;
@@ -91,23 +109,5 @@
 .future-slide figcaption > * {
   display: inline-block;
   text-align: left;
-}
-.future-slide.left figcaption {
-  text-align: left;
-}
-.future-slide.right figcaption {
-  text-align: right;
-}
-.future-slide.top figcaption {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.future-slide.bottom figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 

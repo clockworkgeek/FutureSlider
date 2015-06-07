@@ -92,7 +92,6 @@
 
     /* cross-browser vertical centering */
     text-align: center;
-
     &:before {
         content: '';
         display: inline-block;
@@ -100,7 +99,24 @@
         vertical-align: middle;
         margin-right: -0.25em; /* Adjusts for spacing */
     }
-
+    &.left figcaption {
+        text-align: left;
+    }
+    &.right figcaption {
+        text-align: right;
+    }
+    &.top figcaption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    &.bottom figcaption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
 
     .future-image {
         position: absolute;
@@ -131,23 +147,3 @@
         }
     }
 }
-    .future-slide {
-        &.left figcaption {
-            text-align: left;
-        }
-        &.right figcaption {
-            text-align: right;
-        }
-        &.top figcaption {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-        &.bottom figcaption {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-    }

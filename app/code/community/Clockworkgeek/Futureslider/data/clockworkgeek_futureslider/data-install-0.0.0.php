@@ -114,3 +114,24 @@ $this->addAttribute('futureslider_slide', 'background_size', array(
     'global' => 0,
     'required' => false
 ));
+
+// no attribute can be exactly "content" because that's an ID on many pages
+$this->addAttribute('futureslider_slide', 'content_widget', array(
+    'type' => 'text',
+    'label' => 'Content',
+    'input' => 'widget',
+    'group' => 'Display',
+    'global' => 0,
+    'required' => false
+));
+
+$this->addAttribute('futureslider_slide', 'content_position', array(
+    'type' => 'varchar',
+    'label' => 'Content Position',
+    'input' => 'select',
+    'group' => 'Display',
+    'source' => 'futureslider/entity_attribute_source_contentposition',
+    'default' => 'center',
+    'global' => 0,
+    'required' => false
+));

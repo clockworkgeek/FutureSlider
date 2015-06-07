@@ -92,7 +92,18 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
         $totalTime = $this->getTotalTime();
         foreach ($this->toKeyframes() as $id => $frames) {
             $keyid = $this->_dasherize($id);
-            $css .= "#$id { animation: {$keyid} {$totalTime}s infinite; }\n";
+            $css .= $this->_prefixProperties("#$id { animation: {$keyid} {$totalTime}s infinite; }\n");
+
+            // add prefixes
+            if (Mage::getStoreConfigFlag('cms/futureslider/prefixes')) {
+                $css .= "@-webkit-keyframes $keyid {\n";
+                foreach ($frames as $time => $frame) {
+                    $index = sprintf('%.5g%%', 100 * $time / $totalTime);
+                    $css .= $this->_prefixProperties("$index { $frame }\n", false);
+                }
+                $css .= "}\n";
+            }
+
             $css .= "@keyframes $keyid {\n";
             foreach ($frames as $time => $frame) {
                 $index = sprintf('%.5g%%', 100 * $time / $totalTime);
@@ -101,18 +112,19 @@ abstract class Clockworkgeek_Futureslider_Model_Html_Animation_Abstract extends 
             $css .= "}\n";
         }
 
-        // add prefixes
-        if (Mage::getStoreConfigFlag('cms/futureslider/prefixes')) {
-            $css = preg_replace(array(
-                '/\b(animation[-\w]*:[^;]+;)/i',
-                '/@(keyframes \S+ {(?:[^{}]*{[^{}]*})*[^{}]*})/i'
-            ), array(
-                '-webkit-\1 \1',
-                '@-webkit-\1 @\1'
-            ), $css);
-        }
-
         return $css;
+    }
+
+    protected function _prefixProperties($rule, $mixed = true)
+    {
+        if (Mage::getStoreConfigFlag('cms/futureslider/prefixes')) {
+            $rule = preg_replace(
+                '/\b(animation[-\w]*:[^;]+;)/i',
+                $mixed ? '-webkit-\1 \1' : '-webkit-\1',
+                $rule
+            );
+        }
+        return $rule;
     }
 
     public function toKeyframes()

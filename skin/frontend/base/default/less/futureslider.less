@@ -56,23 +56,24 @@
 
     @arrow-faded: rgb(51,51,51);
     @arrow-fore: rgb(99,99,99);
+    @arrow-size: 3em;
     .future-nav-prev,
     .future-nav-next {
-        margin: -3em 1em;
+        margin: -@arrow-size 1em;
         top: 50%;
         cursor: pointer;
         position: absolute;
-        border-top: 3em solid transparent;
-        border-bottom: 3em solid transparent;
+        border-top: @arrow-size solid transparent;
+        border-bottom: @arrow-size solid transparent;
         opacity: 0.5;
     }
     .future-nav-prev {
-        border-right: 3em solid @arrow-faded;
+        border-right: @arrow-size solid @arrow-faded;
         left: 0;
     }
     &:hover .future-nav-prev { border-right-color: @arrow-fore; opacity: 1; }
     .future-nav-next {
-        border-left: 3em solid @arrow-faded;
+        border-left: @arrow-size solid @arrow-faded;
         right: 0;
     }
     &:hover .future-nav-next { border-left-color: @arrow-fore; opacity: 1; }

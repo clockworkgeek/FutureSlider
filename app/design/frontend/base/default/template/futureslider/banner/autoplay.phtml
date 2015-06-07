@@ -27,13 +27,15 @@ if (! $this->getChild()) {
     // output nothing if no slides were loaded
     return;
 }
+
+// fallback animation
+$this->getHtmlAttributes()
+    ->addClass('autoplay')
+    ->setData('data-keyframes', $this->getJavascript());
 ?>
 <style type="text/css">
 <?php echo $this->getKeyframes(); ?>
 </style>
-<script type="text/javascript">
-self.Futureslider && Futureslider.playKeyframes(<?php echo $this->getJavascript(); ?>);
-</script>
-<div<?php echo $this->getHtmlAttributes()->addClass('autoplay') ?>>
+<div<?php echo $this->getHtmlAttributes() ?>>
 <?php echo $this->getChildHtml(); ?>
 </div>

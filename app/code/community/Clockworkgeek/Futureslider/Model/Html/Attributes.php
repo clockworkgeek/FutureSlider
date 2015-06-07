@@ -93,7 +93,7 @@ class Clockworkgeek_Futureslider_Model_Html_Attributes extends Varien_Object
                 }
             }
             $html .= ' ' . $helper->quoteEscape($key) . '="';
-            $html .= $helper->jsQuoteEscape($value) . '"';
+            $html .= $helper->quoteEscape($value) . '"';
         }
 
         return $html;

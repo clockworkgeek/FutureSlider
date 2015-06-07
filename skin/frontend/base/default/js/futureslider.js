@@ -1,14 +1,14 @@
-/**
- * Fallback for simple animations
- * 
- * No need to try requestAnimationFrame or fancier, modern browsers will use CSS anim instead
- */
+document.observe('dom:loaded', function(){
+	Effect.Transitions['step-start'] = Effect.Transitions.full;
+	Effect.Transitions['step-end'] = Effect.Transitions.none;
 
-self.AnimationEvent || self.OAnimationEvent || self.MozAnimationEvent || self.webkitAnimationEvent || 
-(Futureslider = {
-	playKeyframes: function (animation) {
-		animation = $H(animation);
-		var times = animation.keys();
+	// Fallback for simple animations
+	// No need to try requestAnimationFrame or fancier, modern browsers will use CSS anim instead
+	self.AnimationEvent || self.OAnimationEvent || self.MozAnimationEvent || self.webkitAnimationEvent ||
+	$$('.widget-future-banner[data-keyframes]').each(function(banner){
+		var keyframes = $(banner).getAttribute('data-keyframes').evalJSON(true),
+			animation = $H(keyframes),
+			times = animation.keys();
 		times.sort(function(a,b){return a-b});
 
 		// start a frame
@@ -42,18 +42,11 @@ self.AnimationEvent || self.OAnimationEvent || self.MozAnimationEvent || self.we
 				afterFinish: play.curry(nextFrame)
 			});
 		}
+		play();
+	});
 
-		// start immediately if already loaded, or wait
-		(document.loaded && play()) || document.observe('dom:loaded', play);
-	}
-});
-
-Effect.Transitions['step-start'] = Effect.Transitions.full;
-Effect.Transitions['step-end'] = Effect.Transitions.none;
-
-self.SVGSVGElement || document.observe('dom:loaded', function(){
 	// hope the size doesn't change too much after load
-	$$('.future-image').each(function(object){
+	self.SVGSVGElement || $$('.future-image').each(function(object){
 		var actual = Element.getDimensions(object),
 			src, aspect, style='', targetSize=Element.readAttribute(object, 'data-size');
 		actual.aspect = actual.height / actual.width;
@@ -74,3 +67,4 @@ self.SVGSVGElement || document.observe('dom:loaded', function(){
 		Element.update(object, '<img class="raster-fallback" src="'+src+'" style="'+style+'" />');
 	});
 });
+

@@ -35,46 +35,7 @@
     }
 }
 
-/* cross-browser vertical centering */
 .future-slide {
-    text-align: center;
-
-    &:before {
-        content: '';
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-        margin-right: -0.25em; /* Adjusts for spacing */
-    }
-
-    figcaption {
-        display: inline-block;
-        vertical-align: middle;
-        width: 99%;
-        > * {
-            display: inline-block;
-            text-align: left;
-        }
-    }
-    &.left figcaption {
-        text-align: left;
-    }
-    &.right figcaption {
-        text-align: right;
-    }
-    &.top figcaption {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-    &.bottom figcaption {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-
     .raster-fallback {
         height: 100%;
         margin: 0 auto;

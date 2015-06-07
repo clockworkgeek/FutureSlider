@@ -8,43 +8,6 @@
   filter: "none";
   -ms-filter: "none";
 }
-.future-slide {
-  text-align: center;
-}
-.future-slide:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -0.25em;
-}
-.future-slide figcaption {
-  display: inline-block;
-  vertical-align: middle;
-  width: 99%;
-}
-.future-slide figcaption > * {
-  display: inline-block;
-  text-align: left;
-}
-.future-slide.left figcaption {
-  text-align: left;
-}
-.future-slide.right figcaption {
-  text-align: right;
-}
-.future-slide.top figcaption {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.future-slide.bottom figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 .future-slide .raster-fallback {
   height: 100%;
   margin: 0 auto;

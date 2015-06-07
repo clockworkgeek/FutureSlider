@@ -86,12 +86,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     &.first {
         z-index: 1; // raise first slide while page loads
     }
+
+    /* cross-browser vertical centering */
+    text-align: center;
+
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.25em; /* Adjusts for spacing */
+    }
+
 
     .future-image {
         position: absolute;
@@ -113,21 +122,32 @@
 
     figcaption {
         position: relative; // non-static so previous element does not overlap
+        display: inline-block;
+        vertical-align: middle;
+        width: 99%;
+        > * {
+            display: inline-block;
+            text-align: left;
+        }
     }
 }
-@media only screen and (min-width: 480px) {
     .future-slide {
-        &.left {
-            justify-content: flex-start;
+        &.left figcaption {
+            text-align: left;
         }
-        &.right {
-            justify-content: flex-end;
+        &.right figcaption {
+            text-align: right;
         }
-        &.top {
-            align-items: flex-start;
+        &.top figcaption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
         }
-        &.bottom {
-            align-items: flex-end;
+        &.bottom figcaption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
     }
-}

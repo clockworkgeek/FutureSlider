@@ -84,6 +84,9 @@
   right: 0;
   bottom: 0;
 }
+.future-slide.fill figcaption {
+  height: 100%;
+}
 .future-slide .future-image {
   position: absolute;
   top: 0;

@@ -1,3 +1,4 @@
+"""Fill"" might prevent this slide being used as a link.","""Fill"" might prevent this slide being used as a link."
 "1.43:1 (landscape paper)","1.43:1 (landscape paper)"
 "1:1 (square)","1:1 (square)"
 "1:1.43 (portrait paper)","1:1.43 (portrait paper)"
@@ -33,6 +34,7 @@
 "Expiring Last","Expiring last"
 "Fade","Fade"
 "Fade + Slide","Fade + Slide"
+"Fill","Fill"
 "Fit height","Fit height"
 "Fit width","Fit width"
 "Future Slider","Future Slider"

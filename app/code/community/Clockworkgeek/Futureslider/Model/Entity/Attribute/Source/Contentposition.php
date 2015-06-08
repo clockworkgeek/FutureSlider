@@ -65,6 +65,10 @@ class Clockworkgeek_Futureslider_Model_Entity_Attribute_Source_Contentposition e
             array(
                 'value' => 'left top',
                 'label' => $helper->__('Top, Left')
+            ),
+            array(
+                'value' => 'fill',
+                'label' => $helper->__('Fill')
             )
         );
     }

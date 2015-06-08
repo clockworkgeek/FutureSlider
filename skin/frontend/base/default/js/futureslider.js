@@ -69,7 +69,8 @@ document.observe('dom:loaded', function(){
 		play();
 	});
 
-	// hope the size doesn't change too much after load
+	// Responsive image without SVG
+	// hope the banner doesn't change size too much after load
 	self.SVGSVGElement || $$('.future-image').each(function(object){
 		var actual = Element.getDimensions(object),
 			src, aspect, style='', targetSize=Element.readAttribute(object, 'data-size');

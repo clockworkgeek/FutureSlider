@@ -30,7 +30,7 @@ document.observe('dom:loaded', function(){
 	// No need to try requestAnimationFrame or fancier, modern browsers will use CSS anim instead
 	self.AnimationEvent || self.OAnimationEvent || self.MozAnimationEvent || self.webkitAnimationEvent ||
 	$$('.widget-future-banner[data-keyframes]').each(function(banner){
-		var keyframes = $(banner).getAttribute('data-keyframes').evalJSON(true),
+		var keyframes = $(banner).readAttribute('data-keyframes').evalJSON(true),
 			animation = $H(keyframes),
 			times = animation.keys();
 		times.sort(function(a,b){return a-b});
@@ -90,6 +90,19 @@ document.observe('dom:loaded', function(){
 		else if (targetSize == 'auto 100%') style = 'width: auto; height: 100%; margin: 0 '+((actual.width-actual.height/aspect)/2)+'px;';
 		else style = 'width: auto; height: auto;';
 		Element.update(object, '<img class="raster-fallback" src="'+src+'" style="'+style+'" />');
+	});
+
+	// Navigation without :checked selector
+	$$('.widget-future-banner.prevnext .future-slide').any(function(e){return e.getStyle('zIndex')>1;}) ||
+	$$('.widget-future-banner.prevnext').invoke('on', 'click', 'label', function(event, label){
+		var forId = label.readAttribute('for'),
+			match = /future-slide-.*/.exec(forId),
+			slide = match ? $(match[0]) : null;
+
+		if (slide) {
+			this.select('.future-slide').invoke('setStyle', {zIndex:'auto'});
+			slide.setStyle({zIndex:2});
+		}
 	});
 });
 
